@@ -98,12 +98,12 @@ def save_to_file(username, persona_text):
     filename = f"user_personas/{username}.txt"
     with open(filename, "w", encoding="utf-8") as f:
         f.write(persona_text)
-    print(f"\n✅ Persona saved to: {filename}")
+    print(f"\n Persona saved to: {filename}")
 
 def main():
     profile_url = input("Enter Reddit profile URL (e.g. https://www.reddit.com/user/kojied/): ").strip()
     if not profile_url.startswith("https://www.reddit.com/user/"):
-        print("❌ Invalid URL format.")
+        print("Invalid URL format.")
         return
 
     username = profile_url.split("/user/")[1].replace("/", "")
@@ -111,7 +111,7 @@ def main():
 
     user_data = fetch_user_content(username)
     if not user_data:
-        print("❌ No data found.")
+        print("No data found.")
         return
 
     prompt = build_prompt(username, user_data)
@@ -120,7 +120,7 @@ def main():
     if persona:
         save_to_file(username, persona)
     else:
-        print("❌ Failed to generate persona.")
+        print("Failed to generate persona.")
 
 if __name__ == "__main__":
     main()
