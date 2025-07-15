@@ -1,12 +1,12 @@
 
 ->Reddit Persona Builder
 
-Generate psychological user personas from any Reddit profile using LLMs (OpenAI GPT-4) and public post/comment data. This tool scrapes a user's public Reddit activity and analyzes it to infer personality traits, interests, opinions, and behavior patterns.
+Generate psychological user personas from any Reddit profile using LLMs (OpenAI GPT-3.5) and public post/comment data. This tool scrapes a user's public Reddit activity and analyzes it to infer personality traits, interests, opinions, and behavior patterns.
 
 ->Features
 - Builds a psychological **user persona**
 - Extracts Reddit posts and comments via Reddit API
-- Uses **OpenAI GPT-4** to generate a persona
+- Uses **OpenAI GPT-3.5** to generate a persona
 - Outputs persona to `.txt` file with **citations**
 - Tested on real Reddit profiles
 - Keeps API keys secret using `.env`
