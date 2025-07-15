@@ -19,7 +19,7 @@ Generate psychological user personas from any Reddit profile using LLMs (OpenAI 
 - tqdm (for progress bars)
 
 ->Clone the repository
-- git clone https:https://github.com/Priyanshu-Kumar-4160/PersonaBuilder.git
+- git clone https://github.com/Priyanshu-Kumar-4160/PersonaBuilder.git
 - cd PersonaBuilder
 
 ->Install dependencies
