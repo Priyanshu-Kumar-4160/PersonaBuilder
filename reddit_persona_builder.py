@@ -12,7 +12,7 @@ load_dotenv()
 # Set up OpenAI API
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
-print("🔑 Loaded API Key:", os.getenv("OPENAI_API_KEY"))
+print("Loaded API Key:", os.getenv("OPENAI_API_KEY"))
 
 # Set up Reddit API
 reddit = praw.Reddit(
