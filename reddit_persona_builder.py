@@ -1,4 +1,4 @@
-# reddit_persona_builder.py
+
 
 import os
 import openai
@@ -11,6 +11,8 @@ load_dotenv()
 
 # Set up OpenAI API
 openai.api_key = os.getenv("OPENAI_API_KEY")
+
+print("🔑 Loaded API Key:", os.getenv("OPENAI_API_KEY"))
 
 # Set up Reddit API
 reddit = praw.Reddit(
@@ -82,6 +84,7 @@ def generate_persona(prompt):
     try:
         response = openai.ChatCompletion.create(
             #model="gpt-4",
+            #model="gpt-3.5-turbo",
             model="gpt-3.5-turbo",
             messages=[
                 {"role": "system", "content": "You are an intelligent assistant that analyzes Reddit users."},
