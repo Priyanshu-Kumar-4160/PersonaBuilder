@@ -51,27 +51,28 @@ def fetch_user_content(username, limit=50):
 
 def build_prompt(username, user_data):
     prompt = f"""
-You are an expert at analyzing Reddit users.
+You are an expert in analyzing Reddit profiles and generating qualitative personas.
 
-Based on the following posts and comments from Reddit user u/{username}, generate a detailed USER PERSONA. 
-The persona should include:
-- Age (if inferable)
-- Gender (if inferable)
-- Occupation
-- Location (if any)
-- Personality traits
-- Hobbies & Interests
-- Writing style
-- Political or ideological leanings (if any)
-- Any other notable patterns
+Based on the following posts and comments from the user u/{username}, generate a persona in this format:
 
-For each characteristic, include a CITATION from the original Reddit content that supports it.
+Name: [Create a realistic name] (Reddit username: u/{username})
+Location: (Guess based on language, subreddits, or cultural references)
+Occupation: (Inferred if possible)
+Goals: What is this person trying to achieve?
+Frustrations: What bothers them or what do they complain about?
+Tone & Communication Style: How do they express themselves? (e.g., sarcastic, formal, emoji-heavy, blunt)
+Personality Traits: List 3-4 traits
+Interests: Based on posts/subreddits
+Reddit Behavior:
+    - Active subreddits
+    - Posting/commenting behavior
+Citations: For each trait or insight above, provide a short quote or post that supports it.
 
----
+Only include information you can reasonably infer from the data. Be structured and organized in your output.
 
-USER DATA:
+Here is the user's data:
 """
-
+    
     for item in user_data:
         if item["type"] == "post":
             prompt += f"\n[POST] Title: {item['title']}\nBody: {item['body']}\nURL: {item['permalink']}\n"
@@ -80,18 +81,23 @@ USER DATA:
 
     return prompt
 
+
 def generate_persona(prompt):
     try:
+        
         response = openai.ChatCompletion.create(
             #model="gpt-4",
-            #model="gpt-3.5-turbo",
             model="gpt-3.5-turbo",
             messages=[
-                {"role": "system", "content": "You are an intelligent assistant that analyzes Reddit users."},
+                {       
+                 "role": "system",
+                 "content": "You are a professional UX researcher and behavioral analyst skilled at building structured user personas from Reddit data."
+                },
                 {"role": "user", "content": prompt}
             ],
             temperature=0.7
         )
+
         return response['choices'][0]['message']['content']
     except Exception as e:
         print("OpenAI Error:", e)
